@@ -1,0 +1,15 @@
+version: "2.4"
+
+services:
+  rabbit:
+    container_name: ${RABBIT_CONTAINER_NAME}
+    ports:
+      - ${RABBIT_EXTERNAL_MONITORING}:15672
+      - ${RABBIT_EXTERNAL_RABBIT}:5672
+    volumes:
+      - ./data:/var/lib/rabbitmq
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: Dockerfile
