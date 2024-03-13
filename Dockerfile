@@ -25,7 +25,31 @@
 #rabbit_1  | 2024-02-26 09:16:44.048870+00:00 [info] <0.248.0>  log(s)         : <stdout>
 #rabbit_1  | 2024-02-26 09:16:44.048870+00:00 [info] <0.248.0>  data dir       : /var/lib/rabbitmq/mnesia/rabbit@870d824dc493
 
-FROM rabbitmq:3.13.0
+#FROM rabbitmq:3.13.0
 
 #[warning] <0.821.0> Metrics collection disabled in management agent, management only interface started
-RUN rabbitmq-plugins enable rabbitmq_management
+#RUN rabbitmq-plugins enable rabbitmq_management
+
+
+##
+
+FROM rabbitmq:3-management-alpine
+
+
+
+
+#RUN rabbitmqctl add_vhost bki_service && \
+#    rabbitmqctl add_vhost zaymigo
+#
+##rabbitmqctl set_permissions -p "custom-vhost" "username" ".*" ".*" ".*"
+#
+#RUN echo 'developer' | rabbitmqctl add_user 'bki_service' && \
+#    rabbitmqctl list_users && \
+#    rabbitmqctl set_permissions -p "bki_service" "bki_service" ".*" ".*" ".*"
+#
+#RUN echo 'developer' | rabbitmqctl add_user 'zaymigo' && \
+#    rabbitmqctl list_users && \
+#    rabbitmqctl set_permissions -p "zaymigo" "zaymigo" ".*" ".*" ".*"
+
+
+#rabbitmqctl list_user_permissions user_name

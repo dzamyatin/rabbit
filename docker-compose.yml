@@ -1,13 +1,27 @@
 version: "2.4"
 
+networks:
+  zaymigo:
+    external: true
+    name: zaymigo
+
 services:
   rabbit:
+    hostname: rabbit #hostname used to persist store data, it is folder related
+    networks:
+      zaymigo:
+        aliases:
+          - rabbitmq
+          - rabbitmq.zaymigo.docker
+          - rabbitmq.zaymigo.local
     container_name: ${RABBIT_CONTAINER_NAME}
     ports:
       - ${RABBIT_EXTERNAL_MONITORING}:15672
       - ${RABBIT_EXTERNAL_RABBIT}:5672
     volumes:
       - ./data:/var/lib/rabbitmq
+      - ./rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+      - ./init.sh:/init.sh
     env_file:
       - .env
     build:
